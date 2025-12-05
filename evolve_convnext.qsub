@@ -31,4 +31,5 @@ python train.py \
   --device 0 \
   --evolve 50 \
   --evolve_population_size 10 \
-  --name evolve_convnext
+  --name evolve_convnext \
+  --noautoanchor

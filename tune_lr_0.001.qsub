@@ -1,0 +1,32 @@
+#!/bin/bash -l
+
+#$ -P ec523bn
+#$ -j y
+#$ -N lr_0_001
+#$ -o logs/lr_0_001.qlog
+
+#$ -l h_rt=5:00:00
+#$ -pe omp 4
+
+#$ -l gpus=1
+#$ -l gpu_c=7.0
+
+# updated dino env combining dino reqs with breast-CLIP-downstream reqs
+module load python3
+source .venv/bin/activate
+
+# train
+python train.py \
+  --img 640 \
+  --batch 16 \
+  --epochs 3 \
+  --data coco128.yaml \
+  --cfg models/yolov5s-convnext.yaml \
+  --weights '' \
+  --workers 2 \
+  --device 0 \
+  --hyp data/hyps/hyp.scratch-low.lr0-0.001.yaml \
+  --name lr_0_001
+
+# eval
+python val.py --weights runs/train/lr_0_001/weights/best.pt --data coco.yaml --img 640

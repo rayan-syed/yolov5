@@ -25,8 +25,8 @@ python train.py \
   --weights '' \
   --workers 2 \
   --device 0 \
-  --name convnext_test
-
+  --name convnext_test \
+  --cache disk  
 
 # eval
 python val.py --weights runs/train/convnext_test/weights/best.pt --data coco.yaml --img 640

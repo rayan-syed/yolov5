@@ -2,8 +2,8 @@
 
 #$ -P ec523bn
 #$ -j y
-#$ -N yolov5
-#$ -o logs/yolo.qlog
+#$ -N yolov5_test
+#$ -o logs/yolo_test.qlog
 
 #$ -l h_rt=5:00:00
 #$ -pe omp 4

@@ -6,7 +6,7 @@
 #$ -o logs/evolve.qlog
 
 #$ -l h_rt=20:00:00
-#$ -pe omp 4
+#$ -pe omp 8
 
 #$ -l gpus=1
 #$ -l gpu_c=7.0
@@ -34,4 +34,4 @@ python train.py \
   --evolve_population_size 10 \
   --evolve_important_only \
   --name evolve_convnext \
-  --noautoanchor
+  --cache disk

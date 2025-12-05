@@ -1,0 +1,34 @@
+#!/bin/bash -l
+
+#$ -P ec500bn
+#$ -j y
+#$ -N yolov5_evolve
+#$ -o logs/evolve.qlog
+
+#$ -l h_rt=12:00:00
+#$ -pe omp 4
+
+#$ -l gpus=1
+#$ -l gpu_c=7.0
+
+# updated dino env combining dino reqs with breast-CLIP-downstream reqs
+module load python3
+source .venv/bin/activate
+
+# train
+# --evolve 50: Run evolution for 50 generations
+# --evolve_population_size 10: Use a population of 10 individuals per generation
+# --epochs 3: Train each individual for 3 epochs (fast evaluation)
+# --name evolve_convnext: Experiment name (results in runs/evolve/evolve_convnext)
+python train.py \
+  --img 640 \
+  --batch 16 \
+  --epochs 3 \
+  --data coco.yaml \
+  --cfg models/yolov5s-convnext.yaml \
+  --weights '' \
+  --workers 2 \
+  --device 0 \
+  --evolve 50 \
+  --evolve_population_size 10 \
+  --name evolve_convnext

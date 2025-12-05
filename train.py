@@ -581,6 +581,7 @@ def parse_opt(known=False):
     parser.add_argument(
         "--evolve_population", type=str, default=ROOT / "data/hyps", help="location for loading population"
     )
+    parser.add_argument("--evolve_population_size", type=int, default=50, help="population size for evolution")
     parser.add_argument("--resume_evolve", type=str, default=None, help="resume evolve from last generation")
     parser.add_argument("--bucket", type=str, default="", help="gsutil bucket")
     parser.add_argument("--cache", type=str, nargs="?", const="ram", help="image --cache ram/disk")
@@ -722,7 +723,7 @@ def main(opt, callbacks=Callbacks()):
         }
 
         # GA configs
-        pop_size = 50
+        pop_size = opt.evolve_population_size
         mutation_rate_min = 0.01
         mutation_rate_max = 0.5
         crossover_rate_min = 0.5

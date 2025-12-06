@@ -25,7 +25,7 @@ python train.py \
   --data coco.yaml \
   --cfg models/yolov5s-convnext.yaml \
   --weights '' \
-  --workers 2 \
+  --workers 0 \
   --device 0 \
   --hyp data/hyps/hyp.scratch-low_cls_obj_gain.yaml \
   --name cls_obj_gain

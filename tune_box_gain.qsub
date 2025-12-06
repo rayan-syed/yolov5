@@ -5,11 +5,11 @@
 #$ -N box_gain
 #$ -o logs/box_gain.qlog
 
-#$ -l h_rt=5:00:00
+#$ -l h_rt=7:00:00
 #$ -pe omp 4
 
 #$ -l gpus=1
-#$ -l gpu_c=7.0
+#$ -l gpu_c=6.0
 
 # updated dino env combining dino reqs with breast-CLIP-downstream reqs
 module load python3
